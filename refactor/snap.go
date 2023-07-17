@@ -946,6 +946,9 @@ func (r *Refactor) MergeSnapshots() (*Snapshot, error) {
 		for _, name := range s.fileNames() {
 			// Get the file from s.
 			f := s.files[name]
+			if f == nil {
+				continue
+			}
 			if ed := s.edits[name]; doEdits && ed != nil {
 				if ed.Delete {
 					f = &File{
