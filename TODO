@@ -1,0 +1,3 @@
+* why is package.Files empty
+* is Files being empty affecting SyntaxAt, from FileAt
+* can package files be added by FileAdd
