@@ -1,3 +1,5 @@
+* feat - mv / cp all transitive dependencies
+* implement cp - (just skip rm?)
 * why is package.Files empty
 * is Files being empty affecting SyntaxAt, from FileAt
 * can package files be added by FileAdd
