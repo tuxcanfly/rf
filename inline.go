@@ -91,11 +91,11 @@ func cmdInline(snap *refactor.Snapshot, args string) error {
 func inlineValues(snap *refactor.Snapshot, fix map[types.Object]ast.Expr) {
 	snap.ForEachFile(func(pkg *refactor.Package, file *ast.File) {
 		refactor.Walk(file, func(stack []ast.Node) {
-			id, ok := stack[0].(*ast.Ident)
+			id, ok := stack[0].(*ast.SelectorExpr)
 			if !ok {
 				return
 			}
-			obj := pkg.TypesInfo.Uses[id]
+			obj := pkg.TypesInfo.Uses[id.Sel]
 			repl := fix[obj]
 			if repl == nil {
 				return

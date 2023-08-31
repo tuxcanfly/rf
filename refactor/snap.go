@@ -940,11 +940,15 @@ func (s *Snapshot) Reset() {
 func (r *Refactor) MergeSnapshots() (*Snapshot, error) {
 	var errs ErrorList
 	failed := false
+	// TODO: print missing ident
 	merge := func(base, s *Snapshot, doEdits bool) {
 		// Merge s into base.
 		for _, name := range s.fileNames() {
 			// Get the file from s.
 			f := s.files[name]
+			if f == nil {
+				continue
+			}
 			if ed := s.edits[name]; doEdits && ed != nil {
 				if ed.Delete {
 					f = &File{
